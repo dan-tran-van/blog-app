@@ -1,0 +1,13 @@
+{
+  "user": {
+    "id": 2,
+    "email": "dan@test.com",
+    "displayName": "Dan Tran",
+    "avatarUrl": null,
+    "bio": null,
+    "role": "USER",
+    "updatedAt": "2024-10-24T04:10:51.386Z",
+    "createdAt": "2024-10-24T04:10:51.386Z"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoiZGFuQHRlc3QuY29tIiwiZGlzcGxheU5hbWUiOiJEYW4gVHJhbiIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzI5NzQzMDUxLCJleHAiOjE3MzIzMzUwNTF9.V0wOp8ZXEBPxvbFhIxw0mW3n6cf9DV-0utri9EUMh48"
+}
