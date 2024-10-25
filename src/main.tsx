@@ -1,4 +1,3 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -9,7 +8,6 @@ import BlogPage from "./pages/blog/blog.page.tsx";
 import { NextUIProvider } from "@nextui-org/react";
 import { SWRConfig } from "swr";
 import AdminLayout from "./pages/admin/admin.layout.tsx";
-import axios from "axios";
 import SignIn from "./pages/sign-in/sign-in.page.tsx";
 import SignUp from "./pages/signup/signup.page.tsx";
 import { path } from "./utils/path.util.ts";
