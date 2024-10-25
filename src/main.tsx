@@ -13,6 +13,7 @@ import axios from "axios";
 import SignIn from "./pages/sign-in/sign-in.page.tsx";
 import SignUp from "./pages/signup/signup.page.tsx";
 import { path } from "./utils/path.util.ts";
+import AuthProvider from "./contexts/auth-context.tsx";
 
 const router = createBrowserRouter([
   {
@@ -65,15 +66,11 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
+  <AuthProvider>
     <NextUIProvider>
-      <SWRConfig
-        value={{
-          fetcher: (url) => axios.get(url).then((res) => res.data),
-        }}
-      >
+      <SWRConfig>
         <RouterProvider router={router} />
       </SWRConfig>
     </NextUIProvider>
-  </StrictMode>,
+  </AuthProvider>,
 );

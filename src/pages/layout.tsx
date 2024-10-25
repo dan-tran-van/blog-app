@@ -6,8 +6,10 @@ import {
   ArrowUpTrayIcon,
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
+import { useAuth } from "@/contexts/auth-context";
 
 export default function Layout() {
+  const { user, logOut } = useAuth();
   return (
     <>
       <div
@@ -34,21 +36,32 @@ export default function Layout() {
                 <ArrowUpTrayIcon className="size-[20px]" />
               </Button>
             </li>
-            <li>
-              <Link to={"/"}>
-                <Button
-                  variant="solid"
-                  className="bg-[#6540df] font-bold text-white"
-                >
-                  Subscribe
+
+            {!user ? (
+              <>
+                <li>
+                  <Link to={"/signup"}>
+                    <Button
+                      variant="solid"
+                      className="bg-[#6540df] font-bold text-white"
+                    >
+                      Subscribe
+                    </Button>
+                  </Link>
+                </li>
+                <li>
+                  <Link to={"/sign-in"}>
+                    <Button variant="light">Sign in</Button>
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <li>
+                <Button variant="light" onClick={logOut}>
+                  Log out
                 </Button>
-              </Link>
-            </li>
-            <li>
-              <Link to={"/"}>
-                <Button variant="light">Sign in</Button>
-              </Link>
-            </li>
+              </li>
+            )}
           </ul>
         </div>
       </div>

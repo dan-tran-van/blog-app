@@ -1,3 +1,5 @@
+import { User } from "./auth.type";
+
 export type Status = "DRAFT" | "PUBLISHED" | "ARCHIVED";
 
 export type Blog = {
@@ -14,10 +16,4 @@ export type Blog = {
   likes: number;
   comments: number;
   isLiked: true;
-};
-
-export type User = {
-  id: number;
-  displayName: string;
-  avatarUrl: string;
 };
