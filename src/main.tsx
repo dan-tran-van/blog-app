@@ -10,16 +10,19 @@ import { NextUIProvider } from "@nextui-org/react";
 import { SWRConfig } from "swr";
 import AdminLayout from "./pages/admin/admin.layout.tsx";
 import axios from "axios";
+import SignIn from "./pages/sign-in/sign-in.page.tsx";
+import SignUp from "./pages/signup/signup.page.tsx";
+import { path } from "./utils/path.util.ts";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: path.home(),
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Home /> },
       {
-        path: "p/:slug",
+        path: path.blog(":slug"),
         element: <BlogPage />,
         children: [
           {
@@ -36,15 +39,28 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/admin/",
+    path: path.admin.__base,
     element: <AdminLayout />,
-    children: [],
+    children: [
+      {
+        path: path.admin.overview(),
+        index: true,
+      },
+      {
+        path: path.admin.users(),
+      },
+      {
+        path: path.admin.blogs(),
+      },
+    ],
   },
   {
     path: "/sign-in",
+    element: <SignIn />,
   },
   {
-    path: "signup",
+    path: "/signup",
+    element: <SignUp />,
   },
 ]);
 
