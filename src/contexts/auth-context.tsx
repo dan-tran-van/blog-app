@@ -8,6 +8,7 @@ import {
 import { User } from "@/types/auth.type";
 import { api } from "@/sdk";
 import Cookies from "js-cookie";
+import { useSWRConfig } from "swr";
 
 export type AuthContextValue = {
   user: User | null;
@@ -23,6 +24,7 @@ export const useAuth = () => useContext(AuthContext);
 export default function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { mutate } = useSWRConfig();
 
   useEffect(() => {
     api.auth
@@ -33,6 +35,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
 
   function logOut() {
     Cookies.remove("token");
+    mutate("latest_blog");
     setUser(null);
   }
   return (

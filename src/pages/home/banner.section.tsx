@@ -9,8 +9,9 @@ import { Link } from "react-router-dom";
 import useSWR from "swr";
 
 export default function Banner() {
-  const { data: blog } = useSWR("latest_blog", api.blog.getLatest);
+  const { data: blog, error } = useSWR("latest_blog", api.blog.getLatest);
 
+  if (error) return <div>Error loading data.</div>;
   if (!blog) return <div>Loading...</div>;
 
   return (
