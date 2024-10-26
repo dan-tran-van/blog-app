@@ -1,4 +1,4 @@
-import { User } from "@/types/blog.type";
+import { User } from "@/types/auth.type";
 import createFetcher from "@/utils/axios.util";
 import { AxiosError } from "axios";
 
@@ -47,9 +47,9 @@ export const authSDK = {
       throw error;
     }
   },
-  currentUser: async (key: string): Promise<{ user: User }> => {
-    const axios = createFetcher();
+  currentUser: async (): Promise<{ user: User } | null> => {
     try {
+      const axios = createFetcher();
       const res = await axios.get("/api/auth/me");
       return res.data;
     } catch (error) {

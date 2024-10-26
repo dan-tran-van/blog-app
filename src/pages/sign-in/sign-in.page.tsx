@@ -43,8 +43,6 @@ export default function Login() {
     },
   });
 
-  // console.log(error);
-
   return (
     <div className="flex h-screen w-full flex-col items-center">
       <div className="flex w-full flex-row justify-start p-5">

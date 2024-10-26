@@ -1,11 +1,16 @@
 import { Blog } from "@/types/blog.type";
 import ActionButton from "../ActionButton/ActionButton";
-import { HeartIcon } from "@heroicons/react/24/outline";
+import { HeartIcon } from "lucide-react";
 
 export default function LikeButton({ blog }: { blog: Blog }) {
   return (
     <ActionButton>
-      <HeartIcon className="size-[14px] stroke-[2px] text-[#868787]" />
+      {blog.isLiked ? (
+        <HeartIcon fill="pink" size={14} color="pink" />
+      ) : (
+        <HeartIcon size={14} color="#868787" />
+      )}
+
       <span className="text-[14px]">{blog.likes}</span>
     </ActionButton>
   );

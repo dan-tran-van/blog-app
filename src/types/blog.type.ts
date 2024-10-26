@@ -15,5 +15,5 @@ export type Blog = {
   user: User;
   likes: number;
   comments: number;
-  isLiked: true;
+  isLiked: boolean;
 };

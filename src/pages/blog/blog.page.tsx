@@ -5,27 +5,19 @@ import { Blog } from "@/types/blog.type";
 import Markdown from "react-markdown";
 import { useLocation, useParams } from "react-router-dom";
 import useSWR from "swr";
-
-const blogFetcher = (url: string) => fetch(url).then((res) => res.json());
-
-function useBlog(slug: string | undefined) {
-  const { data, error, isLoading } = useSWR<Blog>(
-    `https://origami-go.vercel.app/api/blogs/slug?slug=${slug && slug}`,
-    blogFetcher,
-  );
-  return {
-    blog: data,
-    isLoading,
-    isError: error,
-  };
-}
+import rehypeRaw from "rehype-raw";
+import { api } from "@/sdk";
 
 export default function BlogPage() {
   const { slug } = useParams();
-  const { blog, isLoading, isError } = useBlog(slug);
+  const {
+    data: blog,
+    isLoading,
+    error,
+  } = useSWR<Blog>(`${slug}`, api.blog.getBlogBySlug);
   const location = useLocation();
 
-  if (isError) return <div>Failed to load blog</div>;
+  if (error) return <div>Failed to load blog</div>;
   if (isLoading) return <div>Loading...</div>;
   return (
     <div className="flex min-h-[100vh] flex-col items-center">
@@ -34,7 +26,7 @@ export default function BlogPage() {
         <div></div>
         <BlogActionBar blog={blog!} />
         <p>{blog?.summary || "No subtitle"}</p>
-        <Markdown className="prose">
+        <Markdown className="prose max-w-[732px]" rehypePlugins={[rehypeRaw]}>
           {blog?.bodyHtml || "##No content"}
         </Markdown>
 
