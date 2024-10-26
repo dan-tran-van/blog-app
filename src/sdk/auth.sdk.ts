@@ -47,7 +47,7 @@ export const authSDK = {
       throw error;
     }
   },
-  currentUser: async (): Promise<{ user: User } | null> => {
+  currentUser: async (): Promise<{ user: User }> => {
     try {
       const axios = createFetcher();
       const res = await axios.get("/api/auth/me");

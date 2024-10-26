@@ -1,4 +1,3 @@
-import { useAuth } from "@/contexts/auth-context";
 import { api } from "@/sdk";
 import { formatFullDate } from "@/utils/date.util";
 import {
@@ -10,7 +9,6 @@ import { Link } from "react-router-dom";
 import useSWR from "swr";
 
 export default function Banner() {
-  const { user, data, mutate, loggedOut, loading } = useAuth();
   const { data: blog } = useSWR("latest_blog", api.blog.getLatest);
 
   if (!blog) return <div>Loading...</div>;
