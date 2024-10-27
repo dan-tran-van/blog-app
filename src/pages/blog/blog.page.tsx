@@ -4,7 +4,7 @@ import BlogSorter from "@/components/BlogSorter/BlogSorter";
 import { Blog } from "@/types/blog.type";
 import Markdown from "react-markdown";
 import { useLocation, useParams } from "react-router-dom";
-import useSWR from "swr";
+import useSWR, { BareFetcher } from "swr";
 import rehypeRaw from "rehype-raw";
 import { api } from "@/sdk";
 
@@ -14,7 +14,7 @@ export default function BlogPage() {
     data: blog,
     isLoading,
     error,
-  } = useSWR<Blog>(["blog", slug], api.blog.getBlogBySlug);
+  } = useSWR<Blog>(["blog", slug], api.blog.getBlogBySlug as BareFetcher<Blog>);
   const location = useLocation();
 
   if (error) return <div>Failed to load blog</div>;

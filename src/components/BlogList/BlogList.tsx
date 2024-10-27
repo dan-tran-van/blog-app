@@ -1,7 +1,7 @@
 import { Blog } from "@/types/blog.type";
 import { useSearchParams } from "react-router-dom";
 import { BlogCard } from "./BlogCard";
-import useSWR from "swr";
+import useSWR, { BareFetcher } from "swr";
 import { api } from "@/sdk";
 
 export default function BlogList({
@@ -19,7 +19,10 @@ export default function BlogList({
     data: blogs,
     error,
     isLoading,
-  } = useSWR<Blog[]>(["blogs", take, skip, sortQueryParam], api.blog.getBlogs);
+  } = useSWR<Blog[]>(
+    ["blogs", take, skip, sortQueryParam],
+    api.blog.getBlogs as BareFetcher<Blog[]>,
+  );
 
   if (error) return <div>Failed to load blogs</div>;
   if (isLoading) return <div>Loading...</div>;
