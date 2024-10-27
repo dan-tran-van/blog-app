@@ -12,6 +12,8 @@ import SignIn from "./pages/sign-in/sign-in.page.tsx";
 import SignUp from "./pages/signup/signup.page.tsx";
 import { path } from "./utils/path.util.ts";
 import AuthProvider from "./contexts/auth-context.tsx";
+import AdminOverview from "./pages/admin/admin.page.tsx";
+import AdminManage from "./pages/admin/manage/manage.page.tsx";
 
 const router = createBrowserRouter([
   {
@@ -19,21 +21,26 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Home /> },
       {
-        path: path.blog(":slug"),
-        element: <BlogPage />,
+        errorElement: <ErrorPage />,
         children: [
+          { index: true, element: <Home /> },
           {
-            path: "comments",
+            path: path.blog(":slug"),
+            element: <BlogPage />,
+            children: [
+              {
+                path: "comments",
+              },
+            ],
+          },
+          {
+            path: "archive",
+          },
+          {
+            path: "about",
           },
         ],
-      },
-      {
-        path: "archive",
-      },
-      {
-        path: "about",
       },
     ],
   },
@@ -42,8 +49,12 @@ const router = createBrowserRouter([
     element: <AdminLayout />,
     children: [
       {
-        path: path.admin.overview(),
         index: true,
+        element: <AdminOverview />,
+      },
+      {
+        path: path.admin.manage(),
+        element: <AdminManage />,
       },
       {
         path: path.admin.users(),

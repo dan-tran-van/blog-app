@@ -19,10 +19,7 @@ export default function BlogList({
     data: blogs,
     error,
     isLoading,
-  } = useSWR<Blog[]>(
-    { take: take, skip: skip, sort: sortQueryParam },
-    api.blog.getBlogs,
-  );
+  } = useSWR<Blog[]>(["blogs", take, skip, sortQueryParam], api.blog.getBlogs);
 
   if (error) return <div>Failed to load blogs</div>;
   if (isLoading) return <div>Loading...</div>;

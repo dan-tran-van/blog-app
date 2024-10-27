@@ -14,7 +14,7 @@ export default function BlogPage() {
     data: blog,
     isLoading,
     error,
-  } = useSWR<Blog>(`${slug}`, api.blog.getBlogBySlug);
+  } = useSWR<Blog>(["blog", slug], api.blog.getBlogBySlug);
   const location = useLocation();
 
   if (error) return <div>Failed to load blog</div>;

@@ -17,15 +17,15 @@ export default function BlogSorter({
         <SortOption path={path} defaultOption={true} query="lasted">
           Latest
         </SortOption>
-        <SortOption path={path} query="most-viewed">
-          View
+        <SortOption path={path} query="most-commented">
+          Comment
         </SortOption>
         <SortOption path={path} query="most-liked">
           Like
         </SortOption>
       </ul>
       <Button variant="light" isIconOnly>
-        <MagnifyingGlassIcon className="size-[24px]" />
+        <MagnifyingGlassIcon className="size-6" />
       </Button>
     </div>
   );

@@ -5,7 +5,7 @@ export const path = {
   blog: (slug: string) => `p/${slug}`,
   admin: {
     __base: "/admin/",
-    overview: () => "/admin/overview",
+    manage: () => "/admin/manage",
     users: () => "/admin/users",
     blogs: () => "/admin/blogs",
     addBlog: () => "/admin/blog/add",

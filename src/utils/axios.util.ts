@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 
 export default function createFetcher() {
   const token = Cookies.get("token");
-  axios.defaults.baseURL = "https://origami-go.vercel.app";
+  axios.defaults.baseURL = "https://origamigo-api.vercel.app";
   console.log("token: ", token);
 
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;

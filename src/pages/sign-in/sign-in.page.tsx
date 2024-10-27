@@ -6,12 +6,14 @@ import { Button, Input } from "@nextui-org/react";
 import { useFormik } from "formik";
 import Cookies from "js-cookie";
 import { ChevronLeftIcon } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import useSWRMutation from "swr/mutation";
 import * as y from "yup";
 
 export default function Login() {
   const { user, setUser } = useAuth();
+  const [searchParams] = useSearchParams();
+  const redirectParam = searchParams.get("redirect");
 
   const navigate = useNavigate();
   const { trigger, isMutating, error } = useSWRMutation("/", api.auth.login, {
@@ -19,7 +21,11 @@ export default function Login() {
       Cookies.set("token", data.token);
       console.log(data);
       setUser(data.user);
-      navigate(path.home());
+      if (redirectParam) {
+        navigate(redirectParam);
+      } else {
+        navigate(path.home());
+      }
     },
     onError: (error) => {
       console.error(error);

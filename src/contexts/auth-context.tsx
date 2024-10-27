@@ -36,6 +36,8 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
   function logOut() {
     Cookies.remove("token");
     mutate("latest_blog");
+    mutate((key) => Array.isArray(key) && key[0] === "blogs");
+    mutate((key) => Array.isArray(key) && key[0] === "blog");
     setUser(null);
   }
   return (

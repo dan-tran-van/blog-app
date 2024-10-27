@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import Footer from "@/components/Footer/Footer";
 import { Button } from "@nextui-org/react";
 import Logo from "@/components/Logo/Logo";
@@ -7,9 +7,11 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 import { useAuth } from "@/contexts/auth-context";
+import { path } from "@/utils/path.util";
 
 export default function Layout() {
   const { user, logOut } = useAuth();
+  const location = useLocation();
   return (
     <>
       <div
@@ -50,7 +52,7 @@ export default function Layout() {
                   </Link>
                 </li>
                 <li>
-                  <Link to={"/sign-in"}>
+                  <Link to={`${path.signIn()}?redirect=${location.pathname}`}>
                     <Button variant="light">Sign in</Button>
                   </Link>
                 </li>
