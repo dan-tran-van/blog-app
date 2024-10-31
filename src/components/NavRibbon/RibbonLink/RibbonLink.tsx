@@ -10,6 +10,7 @@ export default function RibbonLink({
 }) {
   return (
     <NavLink
+      end
       to={path}
       className={({ isActive }) =>
         isActive

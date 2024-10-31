@@ -14,6 +14,8 @@ import { path } from "./utils/path.util.ts";
 import AuthProvider from "./contexts/auth-context.tsx";
 import AdminOverview from "./pages/admin/admin.page.tsx";
 import AdminManage from "./pages/admin/manage/manage.page.tsx";
+import BlogListAdmin from "./pages/admin/blogs/blogsAdmin.page.tsx";
+import AddBlogAdmin from "./pages/admin/blogs/add/addBlogAdmin.page.tsx";
 
 const router = createBrowserRouter([
   {
@@ -61,15 +63,20 @@ const router = createBrowserRouter([
       },
       {
         path: path.admin.blogs(),
+        element: <BlogListAdmin />,
+      },
+      {
+        path: path.admin.addBlog(),
+        element: <AddBlogAdmin />,
       },
     ],
   },
   {
-    path: "/sign-in",
+    path: path.signIn(),
     element: <SignIn />,
   },
   {
-    path: "/signup",
+    path: path.signUp(),
     element: <SignUp />,
   },
 ]);

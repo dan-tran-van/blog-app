@@ -7,7 +7,7 @@ import { Link, NavLink } from "react-router-dom";
 export default function NavBar() {
   const { user, logOut } = useAuth();
   return (
-    <nav className="flex flex-col">
+    <nav className="flex flex-col gap-3 p-3">
       <div>
         <NavLink
           className={"flex flex-row items-center gap-2"}
@@ -17,7 +17,7 @@ export default function NavBar() {
           <span>OrigamiGo Admin</span>
         </NavLink>
       </div>
-      <ul className="flex flex-col">
+      <ul className="flex flex-col gap-3">
         <AdminNavButton to={path.admin.__base}>
           <House size={16} />
           <span>Overview</span>
@@ -27,21 +27,11 @@ export default function NavBar() {
           <DatabaseIcon size={16} />
           <span>Manage</span>
         </AdminNavButton>
-        {user ? (
-          <div
-            className="flex flex-row items-center gap-2"
-            onClick={() => logOut()}
-          >
+        {user && (
+          <AdminNavButton onClick={() => logOut()}>
             <LogOutIcon size={16} />
             <span>Log out</span>
-          </div>
-        ) : (
-          <Link to={path.signIn()}>
-            <div className="flex flex-row items-center gap-2">
-              <LogInIcon size={16} />
-              <span>Log in</span>
-            </div>
-          </Link>
+          </AdminNavButton>
         )}
       </ul>
     </nav>

@@ -5,10 +5,11 @@ export const path = {
   blog: (slug: string) => `p/${slug}`,
   admin: {
     __base: "/admin/",
-    manage: () => "/admin/manage",
-    users: () => "/admin/users",
+    manage: () => "/admin/manage/",
+    users: () => "/admin/users/",
+    addUser: () => "/admin/users/add/",
     blogs: () => "/admin/blogs",
-    addBlog: () => "/admin/blog/add",
+    addBlog: () => "/admin/blogs/add",
     editBlog: (id: number) => `/admin/blog/${id}/edit`,
   },
 };

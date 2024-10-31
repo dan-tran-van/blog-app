@@ -4,8 +4,10 @@ import { useAuth } from "@/contexts/auth-context";
 import { path } from "@/utils/path.util";
 
 export default function AdminLayout() {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
   const location = useLocation();
+
+  if (isLoading) return <div>Loading...</div>;
 
   if (!user) {
     return (
@@ -25,7 +27,7 @@ export default function AdminLayout() {
       <div className="md:col-span-3 lg:col-span-2">
         <NavBar />
       </div>
-      <main className="md:col-span-9 lg:col-span-10">
+      <main className="grid md:col-span-9 md:grid-cols-9 lg:col-span-10 lg:grid-cols-10">
         <Outlet />
       </main>
     </div>
