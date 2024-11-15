@@ -64,6 +64,18 @@ export default function Layout() {
                 </Button>
               </li>
             )}
+            {user?.role === "ADMIN" && (
+              <li>
+                <Link to={path.admin.__base}>
+                  <Button
+                    variant="solid"
+                    className="bg-[#6540df] font-bold text-white"
+                  >
+                    Admin
+                  </Button>
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>

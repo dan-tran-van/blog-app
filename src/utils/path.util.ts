@@ -11,5 +11,6 @@ export const path = {
     blogs: () => "/admin/blogs",
     addBlog: () => "/admin/blogs/add",
     editBlog: (id: number) => `/admin/blog/${id}/edit`,
+    subscriptions: () => "/admin/subscriptions",
   },
 };

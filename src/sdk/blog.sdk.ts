@@ -53,4 +53,16 @@ export const blogSDK = {
       throw error;
     }
   },
+  likeBlog: async (url: string, { arg }: { arg: number }) => {
+    const axios = createFetcher();
+    const res = await axios.post("/api/likes/like", { blogId: arg });
+    return res.data;
+  },
+  unlikeBlog: async (url: string, { arg }: { arg: number }) => {
+    const axios = createFetcher();
+    const res = await axios.delete("/api/likes/unlike", {
+      params: { blogId: arg },
+    });
+    return res.data;
+  },
 };

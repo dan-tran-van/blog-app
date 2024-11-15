@@ -23,11 +23,13 @@ export default function AdminLayout() {
     return <div>You don't have permission to access this page</div>;
   }
   return (
-    <div className="grid grid-cols-12">
-      <div className="md:col-span-3 lg:col-span-2">
-        <NavBar />
+    <div className="flex h-screen items-center justify-start">
+      <div className="h-dvh">
+        <div className="h-full w-72 border-r-small border-divider p-6">
+          <NavBar />
+        </div>
       </div>
-      <main className="grid md:col-span-9 md:grid-cols-9 lg:col-span-10 lg:grid-cols-10">
+      <main className="h-full flex-1">
         <Outlet />
       </main>
     </div>

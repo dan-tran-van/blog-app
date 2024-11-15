@@ -21,7 +21,7 @@ const router = createBrowserRouter([
   {
     path: path.home(),
     element: <Layout />,
-    errorElement: <ErrorPage />,
+    // errorElement: <ErrorPage />,
     children: [
       {
         errorElement: <ErrorPage />,
@@ -49,25 +49,31 @@ const router = createBrowserRouter([
   {
     path: path.admin.__base,
     element: <AdminLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
-        index: true,
-        element: <AdminOverview />,
-      },
-      {
-        path: path.admin.manage(),
-        element: <AdminManage />,
-      },
-      {
-        path: path.admin.users(),
-      },
-      {
-        path: path.admin.blogs(),
-        element: <BlogListAdmin />,
-      },
-      {
-        path: path.admin.addBlog(),
-        element: <AddBlogAdmin />,
+        errorElement: <ErrorPage />,
+        children: [
+          {
+            index: true,
+            element: <AdminOverview />,
+          },
+          {
+            path: path.admin.manage(),
+            element: <AdminManage />,
+          },
+          {
+            path: path.admin.users(),
+          },
+          {
+            path: path.admin.blogs(),
+            element: <BlogListAdmin />,
+          },
+          {
+            path: path.admin.addBlog(),
+            element: <AddBlogAdmin />,
+          },
+        ],
       },
     ],
   },
